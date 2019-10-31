@@ -4,32 +4,32 @@
  **/
 
 const message = readline();
-let binary;
+console.error(message);
+let binary = "";
 let output = "";
 let iteration;
 
 for (let i = 0; i < message.length; i++)
 {
-   binary = message.charCodeAt(i).toString(2);
+   binary += message.charCodeAt(i).toString(2);
    while (binary.length < 7)
     binary = '0' + binary;
+}
     console.error(binary)
   for (let i = 0; i < binary.length; i++)
   {
-      iteration = 0;
-     while (binary.charAt(i) == '1')
-     {
-         i++;
-         iteration++;
-         if (binary.charAt(i) != 1)
-         {
-             output += '0 ';
-             for (let j = 0; j < iteration; j++)
-             output += '0';
-             console.error(output);
-         }
-     }
-  }
-}
-
-console.log('answer');
+      iteration = 1;
+      while (binary.charAt(i) == binary.charAt(i + 1))
+      {
+          iteration++;
+          i++;
+      }
+      output += (binary.charAt(i) == '0') ? "00 " : "0 ";
+      for (let i = 0; i < iteration; i++)
+      {
+          output += '0'
+      }
+      output += ' ';
+    }
+    
+console.log(output.slice(0, output.length - 1));
